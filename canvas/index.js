@@ -16,9 +16,28 @@ window.addEventListener('resize', () => {
 });
 
 const paint = () => {
-  ctx.fillStyle = 'blue';
-  ctx.fillRect(10, 10, 502, 50);
+  const rectSize = getWidth() / 25;
+  let xPos = 0;
+  let yPos = 0;
+  
+  for(let i = 0; i <= 50; i++){
+    for(let j = 0; j <= 10; j++){
 
-  ctx.fillStyle = 'red';
-  ctx.fillRect(25, 30, 3000, 30);
+    const r = Math.abs(Math.sin(Date.now() * i / 50)) * 200;
+    const g = Math.abs(Math.sin(Date.now() * i / 200)) * 200;
+    const b = Math.abs(Math.sin(Date.now() * j / 100)) * 200;
+
+  ctx.fillStyle = 'pink';
+  // ctx.fillRect(xPos, 250, 500, 50);
+  ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+  // ctx.fillRect(xPos, 100, 50, 1000);
+  ctx.fillRect(xPos, yPos, rectSize, rectSize);
+  xPos += rectSize;
+  }
+xPos = 0;
+yPos += rectSize;
+
+}
 };
+setCanvasDimensions();
+  paint();
